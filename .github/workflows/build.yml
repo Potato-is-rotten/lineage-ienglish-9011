@@ -1,0 +1,166 @@
+name: Build LineageOS 16 for iEnglish 9011
+
+on:
+  workflow_dispatch:
+    inputs:
+      clean_build:
+        description: 'Clean build (fresh sync)'
+        required: false
+        default: 'false'
+        type: boolean
+
+env:
+  MANIFEST_URL: 'https://github.com/LineageOS/android.git'
+  MANIFEST_BRANCH: 'lineage-16.0'
+  DEVICE: 'ienglish_9011'
+  BUILD_TYPE: 'userdebug'
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    
+    steps:
+      - name: Check free space
+        run: |
+          df -h
+          free -h
+
+      - name: Maximize build space
+        uses: easimon/maximize-build-space@master
+        with:
+          root-reserve-mb: 512
+          swap-size-mb: 1024
+          remove-dotnet: 'true'
+          remove-android: 'true'
+          remove-haskell: 'true'
+
+      - name: Check free space again
+        run: |
+          df -h
+          free -h
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            bc bison build-essential ccache curl flex \
+            g++-multilib gcc-multilib git gnupg gperf \
+            imagemagick lib32ncurses5-dev lib32readline-dev \
+            lib32z1-dev liblz4-tool libncurses5-dev \
+            libsdl1.2-dev libssl-dev libwxgtk3.0-dev \
+            libxml2 libxml2-utils lzop pngcrush \
+            rsync schedtool squashfs-tools xsltproc \
+            zip zlib1g-dev openjdk-8-jdk
+
+      - name: Set up ccache
+        uses: actions/cache@v3
+        with:
+          path: ~/.ccache
+          key: ccache-${{ env.MANIFEST_BRANCH }}-${{ github.run_id }}
+          restore-keys: |
+            ccache-${{ env.MANIFEST_BRANCH }}-
+
+      - name: Configure ccache
+        run: |
+          ccache -M 10G
+          ccache -z
+
+      - name: Install repo
+        run: |
+          mkdir -p ~/bin
+          curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
+          chmod a+x ~/bin/repo
+          echo "$HOME/bin" >> $GITHUB_PATH
+
+      - name: Initialize repo
+        run: |
+          mkdir -p ~/lineage
+          cd ~/lineage
+          git config --global user.name "Build Bot"
+          git config --global user.email "bot@example.com"
+          repo init -u ${{ env.MANIFEST_URL }} -b ${{ env.MANIFEST_BRANCH }} --depth=1
+
+      - name: Sync source
+        run: |
+          cd ~/lineage
+          repo sync -c -j$(nproc) --force-sync --no-tags --no-clone-bundle
+
+      - name: Set up device tree
+        run: |
+          cd ~/lineage
+          
+          mkdir -p device/ienglish/ienglish_9011
+          
+          cat > device/ienglish/ienglish_9011/AndroidProducts.mk << 'EOF'
+          PRODUCT_MAKEFILES := \
+              $(LOCAL_DIR)/ienglish_9011.mk
+          EOF
+          
+          cat > device/ienglish/ienglish_9011/ienglish_9011.mk << 'EOF'
+          $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base.mk)
+          
+          PRODUCT_NAME := ienglish_9011
+          PRODUCT_DEVICE := ienglish_9011
+          PRODUCT_BRAND := iEnglish
+          PRODUCT_MODEL := iEnglish 9011
+          PRODUCT_MANUFACTURER := iEnglish
+          EOF
+          
+          cat > device/ienglish/ienglish_9011/BoardConfig.mk << 'EOF'
+          TARGET_ARCH := arm
+          TARGET_ARCH_VARIANT := armv8-a
+          TARGET_CPU_ABI := armeabi-v7a
+          TARGET_CPU_ABI2 := armeabi
+          TARGET_CPU_VARIANT := cortex-a53
+          
+          TARGET_BOARD_PLATFORM := mt6739
+          
+          TARGET_USES_64_BIT_BINDER := true
+          
+          BOARD_SYSTEMIMAGE_PARTITION_SIZE := 3221225472
+          BOARD_VENDORIMAGE_PARTITION_SIZE := 536870912
+          BOARD_USERDATAIMAGE_PARTITION_SIZE := 10737418240
+          EOF
+
+      - name: Build
+        run: |
+          cd ~/lineage
+          source build/envsetup.sh
+          breakfast ${{ env.DEVICE }}
+          ccache -z
+          make -j$(nproc) bacon || make -j$(nproc) bacon
+          ccache -s
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: lineage-${{ env.MANIFEST_BRANCH }}-${{ env.DEVICE }}
+          path: |
+            ~/lineage/out/target/product/${{ env.DEVICE }}/*.zip
+            ~/lineage/out/target/product/${{ env.DEVICE }}/*.img
+          retention-days: 7
+
+      - name: Upload to release
+        if: success()
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ env.MANIFEST_BRANCH }}-${{ github.run_number }}
+          name: LineageOS ${{ env.MANIFEST_BRANCH }} for ${{ env.DEVICE }}
+          files: |
+            ~/lineage/out/target/product/${{ env.DEVICE }}/*.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  notify:
+    needs: build
+    runs-on: ubuntu-latest
+    if: always()
+    
+    steps:
+      - name: Notify on success
+        if: needs.build.result == 'success'
+        run: echo "Build completed successfully!"
+        
+      - name: Notify on failure
+        if: needs.build.result == 'failure'
+        run: echo "Build failed!"

@@ -1,0 +1,81 @@
+image: ubuntu:22.04
+
+tasks:
+  - name: Setup & Build LineageOS
+    init: |
+      echo "=== Installing dependencies ==="
+      apt-get update
+      apt-get install -y bc bison build-essential ccache curl flex \
+        g++-multilib gcc-multilib git gnupg gperf imagemagick \
+        lib32ncurses5-dev lib32readline-dev lib32z1-dev liblz4-tool \
+        libncurses5-dev libsdl1.2-dev libssl-dev libwxgtk3.0-dev \
+        libxml2 libxml2-utils lzop pngcrush rsync schedtool \
+        squashfs-tools xsltproc zip zlib1g-dev openjdk-8-jdk python3
+
+      echo "=== Installing repo ==="
+      mkdir -p ~/bin
+      curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
+      chmod a+x ~/bin/repo
+      export PATH="$HOME/bin:$PATH"
+
+      echo "=== Configuring ccache ==="
+      ccache -M 30G
+
+      echo "=== Initializing repository ==="
+      git config --global user.name "Builder"
+      git config --global user.email "builder@gitpod.io"
+      
+      mkdir -p /workspace/lineage
+      cd /workspace/lineage
+      
+      repo init -u https://github.com/LineageOS/android.git \
+        -b lineage-16.0 \
+        --depth=1 \
+        -g all,-notdefault,-device,-kernel,-vendor
+
+      echo "=== Syncing source (this will take a while) ==="
+      repo sync -c -j4 --no-tags --no-clone-bundle
+
+    command: |
+      export PATH="$HOME/bin:$PATH"
+      cd /workspace/lineage
+
+      echo "=== Setting up device tree ==="
+      mkdir -p device/ienglish/ienglish_9011
+
+      cat > device/ienglish/ienglish_9011/AndroidProducts.mk << 'EOF'
+      PRODUCT_MAKEFILES := $(LOCAL_DIR)/ienglish_9011.mk
+      EOF
+
+      cat > device/ienglish/ienglish_9011/ienglish_9011.mk << 'EOF'
+      $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base.mk)
+      PRODUCT_NAME := ienglish_9011
+      PRODUCT_DEVICE := ienglish_9011
+      PRODUCT_BRAND := iEnglish
+      PRODUCT_MODEL := iEnglish 9011
+      EOF
+
+      cat > device/ienglish/ienglish_9011/BoardConfig.mk << 'EOF'
+      TARGET_ARCH := arm
+      TARGET_ARCH_VARIANT := armv8-a
+      TARGET_CPU_ABI := armeabi-v7a
+      TARGET_CPU_ABI2 := armeabi
+      TARGET_CPU_VARIANT := cortex-a53
+      TARGET_USES_64_BIT_BINDER := true
+      TARGET_BOARD_PLATFORM := mt6739
+      BOARD_SYSTEMIMAGE_PARTITION_SIZE := 3221225472
+      EOF
+
+      echo "=== Starting build ==="
+      source build/envsetup.sh
+      breakfast ienglish_9011
+      make -j$(nproc) systemimage
+
+      echo "=== Build complete! ==="
+      ls -la out/target/product/ienglish_9011/
+
+vscode:
+  extensions:
+    - ms-vscode.cpptools
+
+workspaceLocation: /workspace/lineage

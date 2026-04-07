@@ -1,0 +1,69 @@
+# 从原厂vendor提取的专有文件列表
+# 使用 extract-files.sh 脚本提取
+
+# 相机
+vendor/lib/libcamalgo.so
+vendor/lib/libcamdrv.so
+vendor/lib/libcam_mmp.so
+vendor/lib64/libcamalgo.so
+vendor/lib64/libcamdrv.so
+
+# GPU (PowerVR)
+vendor/lib/libIMGegl.so
+vendor/lib/libglslcompiler.so
+vendor/lib/libPVROCL.so
+vendor/lib/libsrv_um.so
+vendor/lib/egl/egl.cfg
+vendor/lib64/libIMGegl.so
+vendor/lib64/libglslcompiler.so
+vendor/lib64/libPVROCL.so
+vendor/lib64/libsrv_um.so
+
+# 音频
+vendor/lib/libaudio.primary.default.so
+vendor/lib/libaudiocustparam.so
+vendor/lib/libaudiosetting.so
+vendor/lib64/libaudio.primary.default.so
+vendor/lib64/libaudiocustparam.so
+
+# WiFi
+vendor/lib/libwpa_client.so
+vendor/lib64/libwpa_client.so
+vendor/firmware/wlan/pronto/WCNSS_qcom_wlan_nv.bin
+
+# 蓝牙
+vendor/lib/libbt-vendor.so
+vendor/lib64/libbt-vendor.so
+vendor/firmware/mt66xx/bt_firmware.bin
+
+# RIL (Radio Interface Layer)
+vendor/lib/libmtk-ril.so
+vendor/lib/libril.so
+vendor/lib64/libmtk-ril.so
+vendor/lib64/libril.so
+
+# GPS
+vendor/lib/libgps.so
+vendor/lib64/libgps.so
+
+# 传感器
+vendor/lib/libsensors.so
+vendor/lib64/libsensors.so
+
+# DRM
+vendor/lib/libdrm.so
+vendor/lib/libwvhidl.so
+vendor/lib64/libdrm.so
+vendor/lib64/libwvhidl.so
+
+# 其他
+vendor/lib/libnvram.so
+vendor/lib64/libnvram.so
+vendor/lib/libfile_op.so
+vendor/lib64/libfile_op.so
+
+# 配置文件
+vendor/etc/fstab.mt6739
+vendor/etc/audio_em.xml
+vendor/etc/media_profiles.xml
+vendor/etc/media_codecs.xml
