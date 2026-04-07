@@ -1,4 +1,4 @@
-# LineageOS 16 for iEnglish 9011 (MT6739/MT8765)
+# LineageOS 17.1 for iEnglish 9011 (MT6739/MT8765)
 
 Lineage for iEnglish4 9011
 
@@ -10,7 +10,14 @@ Lineage for iEnglish4 9011
 | 处理器 | MT6739/MT8765 |
 | 架构 | a64 (arm32-binder64) |
 | 原厂系统 | Android 8.1 |
-| 目标系统 | LineageOS 16 (Android 9) |
+| 目标系统 | LineageOS 17.1 (Android 10) |
+
+## ⚠️ 重要提示
+
+由于原厂vendor是Android 8.1，编译LineageOS 17.1需要：
+1. 提取原厂vendor专有文件
+2. 重新打包vendor分区
+3. 可能需要适配VNDK
 
 ## 编译方法
 
@@ -22,7 +29,7 @@ Lineage for iEnglish4 9011
 
 1. 进入仓库页面
 2. 点击 "Actions"
-3. 选择 "Build LineageOS 16 for iEnglish 9011"
+3. 选择 "Build LineageOS 17.1 for iEnglish 9011"
 4. 点击 "Run workflow"
 
 ### 方法三：本地编译
@@ -33,7 +40,7 @@ docker run \
   -v ~/lineage:/srv/src \
   -v ~/zips:/srv/zips \
   -e DEVICE=ienglish_9011 \
-  -e BRANCH_NAME=lineage-16.0 \
+  -e BRANCH_NAME=lineage-17.1 \
   lineageos4microg/docker-lineage-cicd
 ```
 

@@ -1,4 +1,4 @@
-name: Build LineageOS 16 for iEnglish 9011
+name: Build LineageOS 17.1 for iEnglish 9011
 
 on:
   workflow_dispatch:
@@ -11,7 +11,7 @@ on:
 
 env:
   MANIFEST_URL: 'https://github.com/LineageOS/android.git'
-  MANIFEST_BRANCH: 'lineage-16.0'
+  MANIFEST_BRANCH: 'lineage-17.1'
   DEVICE: 'ienglish_9011'
   BUILD_TYPE: 'userdebug'
 
@@ -50,7 +50,7 @@ jobs:
             libsdl1.2-dev libssl-dev libwxgtk3.0-dev \
             libxml2 libxml2-utils lzop pngcrush \
             rsync schedtool squashfs-tools xsltproc \
-            zip zlib1g-dev openjdk-8-jdk
+            zip zlib1g-dev openjdk-11-jdk
 
       - name: Set up ccache
         uses: actions/cache@v3
@@ -92,8 +92,7 @@ jobs:
           mkdir -p device/ienglish/ienglish_9011
           
           cat > device/ienglish/ienglish_9011/AndroidProducts.mk << 'EOF'
-          PRODUCT_MAKEFILES := \
-              $(LOCAL_DIR)/ienglish_9011.mk
+          PRODUCT_MAKEFILES := $(LOCAL_DIR)/ienglish_9011.mk
           EOF
           
           cat > device/ienglish/ienglish_9011/ienglish_9011.mk << 'EOF'
@@ -112,14 +111,10 @@ jobs:
           TARGET_CPU_ABI := armeabi-v7a
           TARGET_CPU_ABI2 := armeabi
           TARGET_CPU_VARIANT := cortex-a53
-          
-          TARGET_BOARD_PLATFORM := mt6739
-          
           TARGET_USES_64_BIT_BINDER := true
-          
+          TARGET_BOARD_PLATFORM := mt6739
           BOARD_SYSTEMIMAGE_PARTITION_SIZE := 3221225472
-          BOARD_VENDORIMAGE_PARTITION_SIZE := 536870912
-          BOARD_USERDATAIMAGE_PARTITION_SIZE := 10737418240
+          BOARD_VNDK_VERSION := current
           EOF
 
       - name: Build
@@ -128,7 +123,7 @@ jobs:
           source build/envsetup.sh
           breakfast ${{ env.DEVICE }}
           ccache -z
-          make -j$(nproc) bacon || make -j$(nproc) bacon
+          make -j$(nproc) systemimage
           ccache -s
 
       - name: Upload build artifact
@@ -136,20 +131,8 @@ jobs:
         with:
           name: lineage-${{ env.MANIFEST_BRANCH }}-${{ env.DEVICE }}
           path: |
-            ~/lineage/out/target/product/${{ env.DEVICE }}/*.zip
             ~/lineage/out/target/product/${{ env.DEVICE }}/*.img
           retention-days: 7
-
-      - name: Upload to release
-        if: success()
-        uses: softprops/action-gh-release@v1
-        with:
-          tag_name: ${{ env.MANIFEST_BRANCH }}-${{ github.run_number }}
-          name: LineageOS ${{ env.MANIFEST_BRANCH }} for ${{ env.DEVICE }}
-          files: |
-            ~/lineage/out/target/product/${{ env.DEVICE }}/*.zip
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   notify:
     needs: build

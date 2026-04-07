@@ -47,7 +47,7 @@ BOARD_SEPOLICY_DIRS += device/ienglish/ienglish_9011/sepolicy
 # 屏幕密度
 TARGET_SCREEN_DENSITY := 213
 
-# VNDK
+# VNDK - Android 10
 BOARD_VNDK_VERSION := current
 
 # Treble
@@ -56,3 +56,6 @@ TARGET_FULL_TREBLE := true
 
 # 安全补丁级别
 VENDOR_SECURITY_PATCH := 2018-12-05
+
+# Android 10 特定配置
+TARGET_USES_PREBUILT_VENDOR_IMAGE := true
