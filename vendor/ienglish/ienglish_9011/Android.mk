@@ -1,0 +1,15 @@
+LOCAL_PATH := $(call my-dir)
+
+ifeq ($(TARGET_DEVICE),ienglish_9011)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := ienglish_9011-vendor
+LOCAL_MODULE_CLASS := APPS
+LOCAL_MODULE_SUFFIX := .zip
+LOCAL_SRC_FILES := proprietary/$(LOCAL_MODULE).zip
+LOCAL_MODULE_PATH := $(TARGET_OUT)/vendor
+LOCAL_CERTIFICATE := PRESIGNED
+LOCAL_DEX_PREOPT := false
+include $(BUILD_PREBUILT)
+
+endif

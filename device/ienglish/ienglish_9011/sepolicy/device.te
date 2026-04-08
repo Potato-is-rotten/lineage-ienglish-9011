@@ -1,0 +1,7 @@
+type ienglish_9011_device, domain;
+type ienglish_9011_device_exec, exec_type, vendor_file_type, file_type;
+
+init_daemon_domain(ienglish_9011_device)
+
+allow ienglish_9011_device self:capability { net_raw net_admin };
+allow ienglish_9011_device self:socket create_socket_perms;
