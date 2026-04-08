@@ -1,0 +1,25 @@
+# Proprietary files - DO NOT UPLOAD
+vendor/ienglish/ienglish_9011/proprietary/
+
+# Prebuilt kernel - too large for GitHub
+device/ienglish/ienglish_9011/prebuilt/kernel/
+
+# Build outputs
+out/
+*.o
+*.so
+*.a
+
+# IDE
+.idea/
+*.iml
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temp files
+*.tmp
+*.log
+*.bak

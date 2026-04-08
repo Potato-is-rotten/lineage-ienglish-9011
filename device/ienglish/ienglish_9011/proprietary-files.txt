@@ -1,69 +1,748 @@
-# 从原厂vendor提取的专有文件列表
-# 使用 extract-files.sh 脚本提取
+# proprietary-files.txt
+# iEnglish 9011 (MT6739) Proprietary Files
+# Extracted from vendor partition
 
-# 相机
-vendor/lib/libcamalgo.so
-vendor/lib/libcamdrv.so
-vendor/lib/libcam_mmp.so
-vendor/lib64/libcamalgo.so
-vendor/lib64/libcamdrv.so
+# ============================================
+# HAL Services (bin/hw/)
+# ============================================
+-bin/hw/android.hardware.audio@2.0-service-mediatek
+-bin/hw/android.hardware.bluetooth@1.0-service-mediatek
+-bin/hw/android.hardware.broadcastradio@1.1-service
+-bin/hw/android.hardware.cas@1.0-service
+-bin/hw/android.hardware.configstore@1.0-service
+-bin/hw/android.hardware.drm@1.0-service.widevine
+-bin/hw/android.hardware.gatekeeper@1.0-service
+-bin/hw/android.hardware.graphics.composer@2.1-service
+-bin/hw/android.hardware.ir@1.0-service
+-bin/hw/android.hardware.keymaster@3.0-service
+-bin/hw/android.hardware.media.omx@1.0-service
+-bin/hw/android.hardware.sensors@1.0-service-mediatek
+-bin/hw/android.hardware.wifi@1.0-service
+-bin/hw/camerahalserver
+-bin/hw/merged_hal_service
+-bin/hw/mtkfusionrild
+-bin/hw/vendor.mediatek.hardware.dfps@1.0-service
+-bin/hw/vendor.mediatek.hardware.keymaster_attestation@1.1-service
+-bin/hw/vendor.mediatek.hardware.pq@2.0-service
+-bin/hw/wpa_supplicant
 
-# GPU (PowerVR)
-vendor/lib/libIMGegl.so
-vendor/lib/libglslcompiler.so
-vendor/lib/libPVROCL.so
-vendor/lib/libsrv_um.so
-vendor/lib/egl/egl.cfg
-vendor/lib64/libIMGegl.so
-vendor/lib64/libglslcompiler.so
-vendor/lib64/libPVROCL.so
-vendor/lib64/libsrv_um.so
+# ============================================
+# MTK Proprietary Binaries
+# ============================================
+-bin/aee_aedv
+-bin/aee_archivev
+-bin/aee_core_forwarder
+-bin/aee_dumpstatev
+-bin/aeev
+-bin/autobt
+-bin/ccci_fsd
+-bin/ccci_mdinit
+-bin/ccci_rpcd
+-bin/charon
+-bin/epdg_wod
+-bin/fota_util
+-bin/fuelgauged
+-bin/fuelgauged_nvram
+-bin/gsm0710muxd
+-bin/hostapd
+-bin/hostapd_cli
+-bin/ipsec_mon
+-bin/kmsetkey_ca
+-bin/mcDriverDaemon
+-bin/md_ctrl
+-bin/mnld
+-bin/mrdump_tool
+-bin/mtkcam-debug
+-bin/mtk_agpsd
+-bin/muxreport
+-bin/netdagent
+-bin/netdc
+-bin/nvram_daemon
+-bin/rda
+-bin/rs2spir
+-bin/rttv
+-bin/spir2cl
+-bin/stp_dump3
+-bin/stroke
+-bin/thermal
+-bin/thermal_manager
+-bin/thermalloadalgod
+-bin/volte_imcb
+-bin/volte_imsm_93
+-bin/volte_stack
+-bin/volte_ua
+-bin/wifi2agps
+-bin/wmt_concurrency
+-bin/wmt_launcher
+-bin/wmt_loader
+-bin/wmt_loopback
+-bin/wpa_cli
 
-# 音频
-vendor/lib/libaudio.primary.default.so
-vendor/lib/libaudiocustparam.so
-vendor/lib/libaudiosetting.so
-vendor/lib64/libaudio.primary.default.so
-vendor/lib64/libaudiocustparam.so
+# ============================================
+# GPU/EGL Libraries (lib/egl/)
+# ============================================
+-lib/egl/egl.cfg
+-lib/egl/libEGL_mtk.so
+-lib/egl/libGLESv1_CM_mtk.so
+-lib/egl/libGLESv2_mtk.so
 
-# WiFi
-vendor/lib/libwpa_client.so
-vendor/lib64/libwpa_client.so
-vendor/firmware/wlan/pronto/WCNSS_qcom_wlan_nv.bin
+# ============================================
+# Hardware Abstraction Layer Modules (lib/hw/)
+# ============================================
+-lib/hw/android.hardware.audio.effect@2.0-impl.so
+-lib/hw/android.hardware.audio@2.0-impl-mediatek.so
+-lib/hw/android.hardware.bluetooth@1.0-impl-mediatek.so
+-lib/hw/android.hardware.camera.provider@2.4-impl-mediatek.so
+-lib/hw/android.hardware.drm@1.0-impl.so
+-lib/hw/android.hardware.gatekeeper@1.0-impl.so
+-lib/hw/android.hardware.graphics.allocator@2.0-impl.so
+-lib/hw/android.hardware.graphics.composer@2.1-impl.so
+-lib/hw/android.hardware.graphics.mapper@2.0-impl.so
+-lib/hw/android.hardware.ir@1.0-impl.so
+-lib/hw/android.hardware.keymaster@3.0-impl.so
+-lib/hw/android.hardware.light@2.0-impl-mediatek.so
+-lib/hw/android.hardware.memtrack@1.0-impl.so
+-lib/hw/android.hardware.renderscript@1.0-impl.so
+-lib/hw/android.hardware.sensors@1.0-impl-mediatek.so
+-lib/hw/android.hardware.thermal@1.0-impl.so
+-lib/hw/audio.primary.mt6739.so
+-lib/hw/audio.r_submix.mt6739.so
+-lib/hw/consumerir.mt6739.so
+-lib/hw/dfps.mt6739.so
+-lib/hw/flp.mt6739.so
+-lib/hw/gatekeeper.a3a84g.so
+-lib/hw/gatekeeper.mt6739.so
+-lib/hw/gps.mt6739.so
+-lib/hw/gralloc.mt6739.so
+-lib/hw/hwcomposer.mt6739.so
+-lib/hw/keystore.a3a84g.so
+-lib/hw/keystore.mt6739.so
+-lib/hw/kmsetkey.trustonic.so
+-lib/hw/libMcGatekeeper.so
+-lib/hw/libMcTeeKeymaster.so
+-lib/hw/libSoftGatekeeper.so
+-lib/hw/lights.mt6739.so
+-lib/hw/memtrack.mt6739.so
+-lib/hw/power.mt6739.so
+-lib/hw/sensors.mt6739.so
+-lib/hw/sound_trigger.primary.mt6739.so
+-lib/hw/thermal.mt6739.so
+-lib/hw/vendor.mediatek.hardware.camera.ccap@1.0-impl.so
+-lib/hw/vendor.mediatek.hardware.camera.lomoeffect@1.0-impl.so
+-lib/hw/vendor.mediatek.hardware.dfps@1.0-impl.so
+-lib/hw/vendor.mediatek.hardware.gnss@1.1-impl.so
+-lib/hw/vendor.mediatek.hardware.keymaster_attestation@1.1-impl.so
+-lib/hw/vendor.mediatek.hardware.mtkcodecservice@1.1-impl.so
+-lib/hw/vendor.mediatek.hardware.nvram@1.0-impl.so
+-lib/hw/vendor.mediatek.hardware.power@1.1-impl.so
+-lib/hw/vendor.mediatek.hardware.pq@2.0-impl.so
+-lib/hw/vulkan.mt6739.so
 
-# 蓝牙
-vendor/lib/libbt-vendor.so
-vendor/lib64/libbt-vendor.so
-vendor/firmware/mt66xx/bt_firmware.bin
+# ============================================
+# DRM Libraries (lib/mediadrm/)
+# ============================================
+-lib/mediadrm/libwvdrmengine.so
 
-# RIL (Radio Interface Layer)
-vendor/lib/libmtk-ril.so
-vendor/lib/libril.so
-vendor/lib64/libmtk-ril.so
-vendor/lib64/libril.so
+# ============================================
+# Kernel Modules (lib/modules/)
+# ============================================
+-lib/modules/bt_drv.ko
+-lib/modules/fmradio_drv.ko
+-lib/modules/gps_drv.ko
+-lib/modules/met.ko
+-lib/modules/wlan_drv_gen2.ko
+-lib/modules/wmt_chrdev_wifi.ko
+-lib/modules/wmt_drv.ko
 
-# GPS
-vendor/lib/libgps.so
-vendor/lib64/libgps.so
+# ============================================
+# Audio Effects (lib/soundfx/)
+# ============================================
+-lib/soundfx/libaudiopreprocessing.so
+-lib/soundfx/libbundlewrapper.so
+-lib/soundfx/libdownmix.so
+-lib/soundfx/libeffectproxy.so
+-lib/soundfx/libldnhncr.so
+-lib/soundfx/libreverbwrapper.so
+-lib/soundfx/libvisualizer.so
 
-# 传感器
-vendor/lib/libsensors.so
-vendor/lib64/libsensors.so
+# ============================================
+# MTK Proprietary Libraries (lib/)
+# ============================================
+-lib/android.hardware.wifi@1.1_vendor.so
+-lib/lbs_hidl_service-impl.so
+-lib/lib3a.log.so
+-lib/lib3a.so
+-lib/libabfadp.so
+-lib/libacdk.so
+-lib/libaedv.so
+-lib/libakl.so
+-lib/libalsautils.so
+-lib/libaudio_param_parser-vnd.so
+-lib/libaudiocompensationfilter_vendor.so
+-lib/libaudiocompensationfilterc.so
+-lib/libaudiocomponentengine_vendor.so
+-lib/libaudiocomponentenginec.so
+-lib/libaudiocustparam_vendor.so
+-lib/libaudiodcrflt_vendor.so
+-lib/libaudioloudc.so
+-lib/libaudioprimarydevicehalifclient.so
+-lib/libaudiosetting.so
+-lib/libaudiotoolkit_vendor.so
+-lib/libavservices_minijail_vendor.so
+-lib/libbessound_hd_mtk_vendor.so
+-lib/libblisrc32_vendor.so
+-lib/libbluetooth_hw_test.so
+-lib/libbluetooth_mtk.so
+-lib/libbluetooth_mtk_pure.so
+-lib/libbluetooth_relayer.so
+-lib/libbluetoothem_mtk.so
+-lib/libBnMtkCodec.so
+-lib/libbt-vendor.so
+-lib/libbwc.so
+-lib/libcam.camadapter.so
+-lib/libcam.camnode.so
+-lib/libcam.camshot.so
+-lib/libcam.client.so
+-lib/libcam.device1.so
+-lib/libcam.exif.so
+-lib/libcam.exif.v3.so
+-lib/libcam.hal3a.log.so
+-lib/libcam.hal3a.v3.dng.so
+-lib/libcam.hal3a.v3.so
+-lib/libcam.halsensor.so
+-lib/libcam.iopipe.so
+-lib/libcam.jni.lomohaljni.so
+-lib/libcam.metadataprovider.so
+-lib/libcam.paramsmgr.so
+-lib/libcam.utils.so
+-lib/libcam1_utils.so
+-lib/libcam_hwutils.so
+-lib/libcam_mmp.so
+-lib/libcam_platform.so
+-lib/libcam_utils.so
+-lib/libcamalgo.dngop.so
+-lib/libcamalgo.so
+-lib/libcamalgo.utility.so
+-lib/libcamdrv.so
+-lib/libcameracustom.so
+-lib/libccap.so
+-lib/libccci_util.so
+-lib/libcharon-ss.so
+-lib/libClearMotionFW.so
+-lib/libcommonpawrapper.so
+-lib/libcrypto-ss.so
+-lib/libcurl-ss.so
+-lib/libcurl_xcap_md.so
+-lib/libcustom_nvram.so
+-lib/libcvsd_mtk.so
+-lib/libdirect-coredump.so
+-lib/libdpframework.so
+-lib/libDR.so
+-lib/libdrm.so
+-lib/libeffects.so
+-lib/libfeatureio.so
+-lib/libfeatureiodrv.so
+-lib/libfgauge_gm30.so
+-lib/libfile_op.so
+-lib/libfmcust.so
+-lib/libforkexecwrap.so
+-lib/libfpspolicy.so
+-lib/libfvaudio.so
+-lib/libged.so
+-lib/libgeofence.so
+-lib/libglslcompiler.so
+-lib/libgpu_aux.so
+-lib/libgralloc_extra.so
+-lib/libh264dec_customize.so
+-lib/libh264dec_sa.ca7.so
+-lib/libh264dec_sd.ca7.so
+-lib/libh264dec_se.ca7.so
+-lib/libh264enc_sa.ca7.so
+-lib/libHEVCdec_sa.ca7.android.so
+-lib/libhevce_sb.ca7.android.so
+-lib/libhwc2on1adapter.so
+-lib/libhwm.so
+-lib/libhwminijail.so
+-lib/libhwuiext.so
+-lib/libhydra.so
+-lib/libifcutils_mtk.so
+-lib/libimageio.so
+-lib/libimageio_plat_drv.so
+-lib/libIMGegl.so
+-lib/libion_mtk.so
+-lib/libion_ulit.so
+-lib/libipsec_ims_shr.so
+-lib/libjpeg-alpha.so
+-lib/libJpgDecPipe.so
+-lib/libJpgEncPipe.so
+-lib/libkeystore-engine-wifi-hidl.so
+-lib/libkeystore-wifi-hidl.so
+-lib/libksensor.so
+-lib/libMcClient.so
+-lib/libMcRegistry.so
+-lib/libmediacodecservice.so
+-lib/libmemtrack_GL.so
+-lib/libmhalImageCodec.so
+-lib/libminijail_vendor.so
+-lib/libmmi_gsensorcali_jni.so
+-lib/libmmprofile.so
+-lib/libmnl.so
+-lib/libmp4enc_sa.ca7.so
+-lib/libmp4enc_xa.ca7.so
+-lib/libmrdumpv.so
+-lib/libmsbc_mtk.so
+-lib/libmtcloader.so
+-lib/libmtk-ril.so
+-lib/libmtkcam_debugutils.so
+-lib/libmtkcam_device1.so
+-lib/libmtkcam_fwkutils.so
+-lib/libmtkcam_grallocutils.so
+-lib/libmtkcam_imgbuf.so
+-lib/libmtkcam_metadata.so
+-lib/libmtkcam_modulehelper.so
+-lib/libmtkcam_stdutils.so
+-lib/libmtkcam_sysutils.so
+-lib/libmtkjpeg.so
+-lib/libmtklimiter_vendor.so
+-lib/libmtkshifter_vendor.so
+-lib/libMtkOmxAdpcmDec.so
+-lib/libMtkOmxAdpcmEnc.so
+-lib/libMtkOmxAlacDec.so
+-lib/libMtkOmxApeDec.so
+-lib/libMtkOmxCore.so
+-lib/libMtkOmxG711Dec.so
+-lib/libMtkOmxGsmDec.so
+-lib/libMtkOmxMp3Dec.so
+-lib/libMtkOmxRawDec.so
+-lib/libMtkOmxVdecEx.so
+-lib/libMtkOmxVenc.so
+-lib/libMtkOmxVorbisEnc.so
+-lib/libMtkSpeechEnh.so
+-lib/libmtk_drvb.so
+-lib/libn3d3a.so
+-lib/libnativecheck-jni.so
+-lib/libnbaio_mono.so
+-lib/libnvram.so
+-lib/libnvram_daemon_callback.so
+-lib/libnvram_platform.so
+-lib/libnvram_sec.so
+-lib/libnvramagentclient.so
+-lib/libOpenCL.so
+-lib/libperfctl_vendor.so
+-lib/libperfservice.so
+-lib/libperfservicenative.so
+-lib/libpowerhalwrap.so
+-lib/libPQDCjni.so
+-lib/libPQjni.so
+-lib/libpq_cust_base.so
+-lib/libpq_prot.so
+-lib/libPVROCL.so
+-lib/libPVRScopeServices.so
+-lib/libratconfig.so
+-lib/libreference-ril.so
+-lib/librgbwlightsensor.so
+-lib/libril.so
+-lib/librilfusion.so
+-lib/librilutils.so
+-lib/librilutilsmtk.so
+-lib/librrc.so
+-lib/libRSDriver_mtk.so
+-lib/libsec_mem.so
+-lib/libselinux_vendor.so
+-lib/libsensorndkbridge.so
+-lib/libsimaka.so
+-lib/libSonyIMX230PdafLibrary.so
+-lib/libSonyIMX230PdafLibraryWrapper.so
+-lib/libSonyIMX338PdafLibrary.so
+-lib/libSonyIMX338PdafLibraryWrapper.so
+-lib/libSonyIMX386PdafLibrary.so
+-lib/libSonyIMX386PdafLibraryWrapper.so
+-lib/libspeech_enh_lib.so
+-lib/libsrv_um.so
+-lib/libssl-ss.so
+-lib/libstagefrighthw.so
+-lib/libstorage_otp.so
+-lib/libstrongswan.so
+-lib/libSwJpgCodec.so
+-lib/libsysenv.so
+-lib/libTeeClient.so
+-lib/libTEECommon.so
+-lib/libthermalalgo.so
+-lib/libthha.so
+-lib/libtinycompress.so
+-lib/libtinyxml.so
+-lib/libufwriter.so
+-lib/libui_ext.so
+-lib/libusc.so
+-lib/libutinterface_custom_md.so
+-lib/libutinterface_md.so
+-lib/libvc1dec_sa.ca7.so
+-lib/libvcodecdrv.so
+-lib/libvcodec_oal.so
+-lib/libvcodec_utility.so
+-lib/libverno.so
+-lib/libvolte_core_shr.so
+-lib/libvolte_xdmc_shr.so
+-lib/libvp8dec_sa.ca7.so
+-lib/libvp8enc_sa.ca7.so
+-lib/libvp9dec_sa.ca7.so
+-lib/libvt_custom.so
+-lib/libwapi.so
+-lib/libwebrtc_audio_preprocessing.so
+-lib/libwifi-hal.so
+-lib/libwo.so
+-lib/libwpa_client.so
+-lib/libwvhidl.so
+-lib/lib_iir.so
+-lib/lib_speech_enh.so
+-lib/vendor.mediatek.hardware.audio@2.1_vendor.so
+-lib/vendor.mediatek.hardware.camera.ccap@1.0_vendor.so
+-lib/vendor.mediatek.hardware.camera.device@1.1_vendor.so
+-lib/vendor.mediatek.hardware.camera.lomoeffect@1.0_vendor.so
+-lib/vendor.mediatek.hardware.dfps@1.0_vendor.so
+-lib/vendor.mediatek.hardware.gnss@1.1_vendor.so
+-lib/vendor.mediatek.hardware.keymaster_attestation@1.0_vendor.so
+-lib/vendor.mediatek.hardware.keymaster_attestation@1.1_vendor.so
+-lib/vendor.mediatek.hardware.lbs@1.0_vendor.so
+-lib/vendor.mediatek.hardware.mtkcodecservice@1.1_vendor.so
+-lib/vendor.mediatek.hardware.netdagent@1.0_vendor.so
+-lib/vendor.mediatek.hardware.nvram@1.0_vendor.so
+-lib/vendor.mediatek.hardware.power@1.1_vendor.so
+-lib/vendor.mediatek.hardware.pq@2.0_vendor.so
+-lib/vendor.mediatek.hardware.radio.deprecated@1.1_vendor.so
+-lib/vendor.mediatek.hardware.radio@2.0_vendor.so
+-lib/vendor.mediatek.hardware.radio@2.1_vendor.so
+-lib/vendor.mediatek.hardware.radio@2.2_vendor.so
+-lib/vendor.mediatek.hardware.radio@2.3_vendor.so
+-lib/vendor.mediatek.hardware.radio@2.4_vendor.so
+-lib/vendor.mediatek.hardware.radio@2.5_vendor.so
+-lib/vendor.mediatek.hardware.radio@2.6_vendor.so
+-lib/vendor.mediatek.hardware.radio@2.7_vendor.so
+-lib/vendor.mediatek.hardware.radio@2.8_vendor.so
+-lib/vendor.mediatek.hardware.radio@2.9_vendor.so
+-lib/vendor.mediatek.hardware.radio@2.10_vendor.so
+-lib/vendor.mediatek.hardware.radio@2.11_vendor.so
+-lib/vendor.mediatek.hardware.wifi.hostapd@1.0_vendor.so
+-lib/vendor.mediatek.hardware.wifi.supplicant@1.1_vendor.so
 
-# DRM
-vendor/lib/libdrm.so
-vendor/lib/libwvhidl.so
-vendor/lib64/libdrm.so
-vendor/lib64/libwvhidl.so
+# ============================================
+# Firmware Files
+# ============================================
+-firmware/ROMv2_lm_patch_1_0_hdr.bin
+-firmware/ROMv2_lm_patch_1_1_hdr.bin
+-firmware/WIFI_RAM_CODE_6755
+-firmware/WMT_SOC.cfg
+-firmware/catcher_filter_1_ulwtg_n.bin
+-firmware/em_filter_1_ulwtg_n.bin
+-firmware/fm_cust.cfg
+-firmware/mt6627_fm_v1_coeff.bin
+-firmware/mt6627_fm_v1_patch.bin
+-firmware/rgx.fw.signed
+-firmware/customfilter/catcher_filter_1_ulwtg_n_FullLog.bin
+-firmware/customfilter/catcher_filter_1_ulwtg_n_PLS_PS_ONLY.bin
+-firmware/customfilter/catcher_filter_1_ulwtg_n_SlimLog_DspAllOff.bin
+-firmware/customfilter/catcher_filter_1_ulwtg_n__Default.bin
+-firmware/customfilter/catcher_filter_1_ulwtg_n_meta.bin
 
-# 其他
-vendor/lib/libnvram.so
-vendor/lib64/libnvram.so
-vendor/lib/libfile_op.so
-vendor/lib64/libfile_op.so
+# ============================================
+# MTK Applications
+# ============================================
+-app/AutoDialer/AutoDialer.apk
+-app/GameModeProvider/GameModeProvider.apk
+-app/LocationEM2/LocationEM2.apk
+-app/LPPeService/LPPeService.apk
+-app/MTKLoggerProxy/MTKLoggerProxy.apk
+-app/MTKThermalManager/MTKThermalManager.apk
+-app/NlpService/NlpService.apk
+-app/Omacp/Omacp.apk
+-app/RootPA/RootPA.apk
+-app/SimRecoveryTestTool/SimRecoveryTestTool.apk
+-app/WapiCertManager/WapiCertManager.apk
 
-# 配置文件
-vendor/etc/fstab.mt6739
-vendor/etc/audio_em.xml
-vendor/etc/media_profiles.xml
-vendor/etc/media_codecs.xml
+# ============================================
+# Trustonic TEE (mcRegistry)
+# ============================================
+-app/mcRegistry/020f0000000000000000000000000000.drbin
+-app/mcRegistry/020f0000000000000000000000000000.tlbin
+-app/mcRegistry/04010000000000000000000000000000.tlbin
+-app/mcRegistry/05110000000000000000000000000000.tlbin
+-app/mcRegistry/05120000000000000000000000000000.drbin
+-app/mcRegistry/05120000000000000000000000000000.tlbin
+-app/mcRegistry/05220000000000000000000000000000.tlbin
+-app/mcRegistry/07010000000000000000000000000000.tlbin
+-app/mcRegistry/07050000000000000000000000000000.drbin
+-app/mcRegistry/07050000000000000000000000000000.tlbin
+-app/mcRegistry/0706000000000000000000000000004d.tlbin
+-app/mcRegistry/07061000000000000000000000000000.tlbin
+-app/mcRegistry/07170000000000000000000000000000.drbin
+-app/mcRegistry/07170000000000000000000000000000.tlbin
+-app/mcRegistry/08030000000000000000000000000000.tabin
+
+# ============================================
+# Gallery Plugins
+# ============================================
+-etc/gallery/Gallery2Drm/Gallery2Drm.apk
+-etc/gallery/Gallery2Gif/Gallery2Gif.apk
+-etc/gallery/Gallery2Pq/Gallery2Pq.apk
+-etc/gallery/Gallery2PqTool/Gallery2PqTool.apk
+-etc/gallery/Gallery2Raw/Gallery2Raw.apk
+-etc/gallery/Gallery2Root/Gallery2Root.apk
+
+# ============================================
+# Audio Configuration
+# ============================================
+-etc/audio_param/AudioParamOptions.xml
+-etc/audio_param/BtInfo_AudioParam.xml
+-etc/audio_param/BtInfo_ParamUnitDesc.xml
+-etc/audio_param/HpImpedance_AudioParam.xml
+-etc/audio_param/HpImpedance_ParamUnitDesc.xml
+-etc/audio_param/MicInfo_AudioParam.xml
+-etc/audio_param/PlaybackACF_AudioParam.xml
+-etc/audio_param/PlaybackACF_ParamUnitDesc.xml
+-etc/audio_param/PlaybackDRC_AudioParam.xml
+-etc/audio_param/PlaybackDRC_ParamUnitDesc.xml
+-etc/audio_param/PlaybackHCF_AudioParam.xml
+-etc/audio_param/PlaybackHCF_ParamUnitDesc.xml
+-etc/audio_param/PlaybackVolAna_AudioParam.xml
+-etc/audio_param/PlaybackVolAna_ParamUnitDesc.xml
+-etc/audio_param/PlaybackVolDigi_AudioParam.xml
+-etc/audio_param/PlaybackVolDigi_ParamUnitDesc.xml
+-etc/audio_param/PlaybackVolUI_AudioParam.xml
+-etc/audio_param/PlaybackVolUI_ParamUnitDesc.xml
+-etc/audio_param/Playback_AudioParam.xml
+-etc/audio_param/Playback_ParamTreeView.xml
+-etc/audio_param/Playback_ParamUnitDesc.xml
+-etc/audio_param/RecordDMNR_AudioParam.xml
+-etc/audio_param/RecordDMNR_ParamUnitDesc.xml
+-etc/audio_param/RecordFIR_AudioParam.xml
+-etc/audio_param/RecordFIR_ParamUnitDesc.xml
+-etc/audio_param/RecordUI_AudioParam.xml
+-etc/audio_param/RecordUI_ParamUnitDesc.xml
+-etc/audio_param/RecordVolUI_AudioParam.xml
+-etc/audio_param/RecordVolUI_ParamUnitDesc.xml
+-etc/audio_param/RecordVol_AudioParam.xml
+-etc/audio_param/RecordVol_ParamUnitDesc.xml
+-etc/audio_param/Record_AudioParam.xml
+-etc/audio_param/Record_ParamTreeView.xml
+-etc/audio_param/Record_ParamUnitDesc.xml
+-etc/audio_param/RingbackVolUI_AudioParam.xml
+-etc/audio_param/RingbackVolUI_ParamUnitDesc.xml
+-etc/audio_param/RingbackVol_AudioParam.xml
+-etc/audio_param/RingbackVol_ParamUnitDesc.xml
+-etc/audio_param/SmartPa_AudioParam.xml
+-etc/audio_param/SoundEnhancement_AudioParam.xml
+-etc/audio_param/SpeechDMNR_AudioParam.xml
+-etc/audio_param/SpeechDMNR_ParamUnitDesc.xml
+-etc/audio_param/SpeechEchoRef_AudioParam.xml
+-etc/audio_param/SpeechEchoRef_ParamUnitDesc.xml
+-etc/audio_param/SpeechGeneral_AudioParam.xml
+-etc/audio_param/SpeechGeneral_ParamUnitDesc.xml
+-etc/audio_param/SpeechMagiClarity_AudioParam.xml
+-etc/audio_param/SpeechMagiClarity_ParamUnitDesc.xml
+-etc/audio_param/SpeechNetwork_AudioParam.xml
+-etc/audio_param/SpeechNetwork_ParamUnitDesc.xml
+-etc/audio_param/SpeechUI_AudioParam.xml
+-etc/audio_param/SpeechUI_ParamUnitDesc.xml
+-etc/audio_param/SpeechVolUI_AudioParam.xml
+-etc/audio_param/SpeechVolUI_ParamUnitDesc.xml
+-etc/audio_param/SpeechVol_AudioParam.xml
+-etc/audio_param/SpeechVol_ParamUnitDesc.xml
+-etc/audio_param/Speech_AudioParam.xml
+-etc/audio_param/Speech_ParamTreeView.xml
+-etc/audio_param/Speech_ParamUnitDesc.xml
+-etc/audio_param/USBCall_AudioParam.xml
+-etc/audio_param/USBCall_ParamUnitDesc.xml
+-etc/audio_param/USBDevice_AudioParam.xml
+-etc/audio_param/USBDevice_ParamUnitDesc.xml
+-etc/audio_param/VoIPDMNR_AudioParam.xml
+-etc/audio_param/VoIPDMNR_ParamUnitDesc.xml
+-etc/audio_param/VoIPGeneral_AudioParam.xml
+-etc/audio_param/VoIPGeneral_ParamUnitDesc.xml
+-etc/audio_param/VoIPUI_AudioParam.xml
+-etc/audio_param/VoIPUI_ParamUnitDesc.xml
+-etc/audio_param/VoIPv2DMNR_AudioParam.xml
+-etc/audio_param/VoIPv2DMNR_ParamUnitDesc.xml
+-etc/audio_param/VoIPv2General_AudioParam.xml
+-etc/audio_param/VoIPv2General_ParamUnitDesc.xml
+-etc/audio_param/VoIPv2UI_AudioParam.xml
+-etc/audio_param/VoIPv2UI_ParamUnitDesc.xml
+-etc/audio_param/VoIPv2_AudioParam.xml
+-etc/audio_param/VoIPv2_ParamTreeView.xml
+-etc/audio_param/VoIPv2_ParamUnitDesc.xml
+-etc/audio_param/VoIPVolUI_AudioParam.xml
+-etc/audio_param/VoIPVolUI_ParamUnitDesc.xml
+-etc/audio_param/VoIPVol_AudioParam.xml
+-etc/audio_param/VoIPVol_ParamUnitDesc.xml
+-etc/audio_param/VoIP_AudioParam.xml
+-etc/audio_param/VoIP_ParamTreeView.xml
+-etc/audio_param/VoIP_ParamUnitDesc.xml
+-etc/audio_param/VolumeGainMapUL_AudioParam.xml
+-etc/audio_param/VolumeGainMapUL_ParamUnitDesc.xml
+-etc/audio_param/VolumeGainMap_AudioParam.xml
+-etc/audio_param/VolumeGainMap_ParamUnitDesc.xml
+-etc/audio_param/Volume_AudioParam.xml
+-etc/audio_param/Volume_ParamUnitDesc.xml
+-etc/audio_param/VOW_AudioParam.xml
+-etc/aurisys_param/FV-SAM-MTK2.dat
+-etc/aurisys_param/Speech_AudioParam.xml
+
+# ============================================
+# Media Configuration
+# ============================================
+-etc/media_codecs.xml
+-etc/media_codecs_mediatek_audio.xml
+-etc/media_codecs_mediatek_video.xml
+-etc/media_codecs_performance.xml
+-etc/media_profiles.xml
+-etc/mtk_omx_core.cfg
+
+# ============================================
+# Audio Policy Configuration
+# ============================================
+-etc/a2dp_audio_policy_configuration.xml
+-etc/audio_device.xml
+-etc/audio_effects.conf
+-etc/audio_em.xml
+-etc/audio_policy.conf
+-etc/audio_policy_configuration.xml
+-etc/audio_policy_volumes.xml
+-etc/aurisys_config.xml
+-etc/default_volume_tables.xml
+-etc/r_submix_audio_policy_configuration.xml
+-etc/usb_audio_policy_configuration.xml
+
+# ============================================
+# Thermal Configuration
+# ============================================
+-etc/.tp/.ht120.mtc
+-etc/.tp/thermal.conf
+-etc/.tp/thermal.off.conf
+-etc/ams_aal_config.xml
+-etc/powercontable.cfg
+-etc/powerscntbl.cfg
+-etc/power_whitelist_cfg.xml
+
+# ============================================
+# Modem/Telephony Configuration
+# ============================================
+-etc/agps_profiles_conf2.xml
+-etc/cdma_ecc_list.xml
+-etc/cdma_ecc_list_OP01.xml
+-etc/cdma_ecc_list_OP09.xml
+-etc/cdma_ecc_list_OP12.xml
+-etc/cdma_ecc_list_ss.xml
+-etc/ecc_list.xml
+-etc/ecc_list_OP01.xml
+-etc/ecc_list_OP09.xml
+-etc/ecc_list_OP12.xml
+-etc/ecc_list_OP17.xml
+-etc/ecc_list_OP18.xml
+-etc/smsdbvisitor.xml
+-etc/special_pws_channel.xml
+-etc/spn-conf-op09.xml
+-etc/virtual-spn-conf-by-efgid1.xml
+-etc/virtual-spn-conf-by-efpnn.xml
+-etc/virtual-spn-conf-by-efspn.xml
+-etc/virtual-spn-conf-by-imsi.xml
+
+# ============================================
+# Modem Database
+# ============================================
+-etc/mddb/DbgInfo_LR12A.R3.MP_TK_MD_BASIC_MOLY_LR12A_R3_MP_V64_4_P2_2024_05_30_17_10_1_ulwtg_n
+-etc/mddb/MDDB.META.ODB_MT6739_S00_MOLY_LR12A_R3_MP_V64_4_P2_1_ulwtg_n.XML.GZ
+-etc/mddb/MDDB.META_MT6739_S00_MOLY_LR12A_R3_MP_V64_4_P2_1_ulwtg_n.EDB
+-etc/mddb/MDDB_InfoCustomAppSrcP_MT6739_S00_MOLY_LR12A_R3_MP_V64_4_P2_1_ulwtg_n.EDB
+-etc/mddb/mdm_layout_desc_1_ulwtg_n.dat
+
+# ============================================
+# WiFi Configuration
+# ============================================
+-etc/wifi/p2p_supplicant_overlay.conf
+-etc/wifi/wpa_supplicant.conf
+-etc/wifi/wpa_supplicant_overlay.conf
+
+# ============================================
+# IPsec Configuration
+# ============================================
+-etc/ipsec/ipsec.conf
+-etc/ipsec/strongswan.conf
+-etc/ipsec/ipsec.d/cacerts/DigiCertGlobalRootCA.crt
+-etc/ipsec/ipsec.d/cacerts/DigiCertGlobalRootG2.crt
+-etc/ipsec/ipsec.d/cacerts/DigiCertGlobalRootG3.crt
+-etc/ipsec/ipsec.d/cacerts/Entrust.net_Certification_Authority_2048.cer
+-etc/ipsec/ipsec.d/cacerts/GeoTrust_PCA_G3_Root.der
+-etc/ipsec/ipsec.d/cacerts/GeoTrust_Primary_CA.der
+-etc/ipsec/ipsec.d/cacerts/GeoTrust_Primary_CA_G2_ECC.der
+-etc/ipsec/ipsec.d/cacerts/gold.cer
+-etc/ipsec/ipsec.d/cacerts/Root-R3.cer
+-etc/ipsec/ipsec.d/cacerts/Root_CA_1003.crt
+-etc/ipsec/ipsec.d/cacerts/thawte.der
+-etc/ipsec/ipsec.d/cacerts/VeriSignClass3G4.der
+-etc/ipsec/ipsec.d/cacerts/VeriSignClass3G5.der
+-etc/ipsec/ipsec.d/cacerts/VeriSignUniversalRootCertification.der
+-etc/ipsec/ssl/openssl.cnf
+
+# ============================================
+# Voice Command
+# ============================================
+-etc/voicecommand/training/ubmfile/1.pcm
+-etc/voicecommand/training/ubmfile/128.dat
+-etc/voicecommand/training/ubmfile/2.pcm
+-etc/voicecommand/training/ubmfile/3.pcm
+-etc/voicecommand/training/ubmfile/4.pcm
+-etc/voicecommand/training/ubmfile/64.dat
+-etc/voicecommand/training/ubmfile/ubmModel0.bin
+-etc/voicecommand/training/ubmfile/ubmModel1.bin
+-etc/voicecommand/training/ubmfile/ubmModel10.bin
+-etc/voicecommand/training/ubmfile/ubmModel2.bin
+-etc/voicecommand/training/ubmfile/ubmModel3.bin
+-etc/voicecommand/training/ubmfile/ubmModel4.bin
+-etc/voicecommand/training/ubmfile/antiCmds/commandfilr3.dic
+-etc/voicecommand/training/ubmfile/antiCmds/c_e_dic.bin.f
+-etc/voicecommand/training/ubmfile/antiCmds/c_e_dic.bin.gen
+-etc/voicecommand/training/ubmfile/antiCmds/c_e_dic.bin.l
+-etc/voicecommand/training/ubmfile/antiCmds/c_e_dic.bin.p
+-etc/voicecommand/training/ubmfile/antiCmds/c_e_dic.bin.t
+-etc/voicecommand/training/ubmfile/antiCmds/Model1.bin
+-etc/voicecommand/training/ubmfile/antiCmds/Model4.bin
+
+# ============================================
+# Security/SELinux
+# ============================================
+-etc/selinux/nonplat_file_contexts
+-etc/selinux/nonplat_hwservice_contexts
+-etc/selinux/nonplat_mac_permissions.xml
+-etc/selinux/nonplat_property_contexts
+-etc/selinux/nonplat_seapp_contexts
+-etc/selinux/nonplat_sepolicy.cil
+-etc/selinux/nonplat_service_contexts
+-etc/selinux/plat_sepolicy_vers.txt
+-etc/selinux/precompiled_sepolicy
+-etc/selinux/precompiled_sepolicy.plat_and_mapping.sha256
+-etc/selinux/vndservice_contexts
+-etc/security/cacerts_supl/594f1775.0
+-etc/security/cacerts_supl/7651b327.0
+-etc/security/cacerts_supl/848ea856.0
+-etc/security/cacerts_supl/c542733d.0
+-etc/security/cacerts_supl/f336e3d1.0
+
+# ============================================
+# Other Configuration Files
+# ============================================
+-etc/DSM.xml
+-etc/DSM_config.xml
+-etc/aee-config
+-etc/emdlogger_usb_config.prop
+-etc/fstab.mt6739
+-etc/fs_config_dirs
+-etc/fs_config_files
+-etc/public.libraries.txt
+-etc/slp_conf
+
+# ============================================
+# Vendor Properties
+# ============================================
+-build.prop
+-compatibility_matrix.xml
+-default.prop
+-manifest.xml

@@ -1,29 +1,20 @@
-# iEnglish 9011 设备配置
+$(call inherit-product, device/ienglish/ienglish_9011/device.mk)
 
-# 继承基础配置
-$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base.mk)
+$(call inherit-product, vendor/lineage/config/common_full_tablet.mk)
 
-# 继承LineageOS配置
-$(call inherit-product, vendor/lineage/config/common_full_phone.mk)
-
-# 设备信息
 PRODUCT_NAME := lineage_ienglish_9011
 PRODUCT_DEVICE := ienglish_9011
 PRODUCT_BRAND := iEnglish
 PRODUCT_MODEL := iEnglish 9011
 PRODUCT_MANUFACTURER := iEnglish
 
-# 屏幕密度
-PRODUCT_AAPT_CONFIG := normal
-PRODUCT_AAPT_PREF_CONFIG := hdpi
+PRODUCT_GMS_CLIENTID_BASE := android-ienglish
 
-# 权限
-PRODUCT_COPY_FILES += \
-    frameworks/native/data/etc/handheld_core_hardware.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/handheld_core_hardware.xml \
-    frameworks/native/data/etc/android.hardware.camera.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.camera.xml \
-    frameworks/native/data/etc/android.hardware.bluetooth.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.bluetooth.xml \
-    frameworks/native/data/etc/android.hardware.touchscreen.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.touchscreen.xml \
-    frameworks/native/data/etc/android.hardware.wifi.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.wifi.xml
+PRODUCT_BUILD_PROP_OVERRIDES += \
+    PRODUCT_NAME=iEnglish_9011 \
+    PRIVATE_BUILD_DESC="iEnglish_9011-user 8.1.0 O11019 vAQ4-0 release-keys"
 
-# Vendor
-$(call inherit-product, vendor/ienglish/ienglish_9011/ienglish_9011-vendor.mk)
+BUILD_FINGERPRINT := iEnglish/iEnglish_4/E8:8.1.0/O11019/vAQ4-0:user/release-keys
+
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.build.fingerprint=$(BUILD_FINGERPRINT)

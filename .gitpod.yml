@@ -1,7 +1,7 @@
 image: ubuntu:22.04
 
 tasks:
-  - name: Setup & Build LineageOS 17
+  - name: Setup LineageOS 17.1
     init: |
       echo "=== Installing dependencies ==="
       apt-get update
@@ -10,7 +10,8 @@ tasks:
         lib32ncurses5-dev lib32readline-dev lib32z1-dev liblz4-tool \
         libncurses5-dev libsdl1.2-dev libssl-dev libwxgtk3.0-dev \
         libxml2 libxml2-utils lzop pngcrush rsync schedtool \
-        squashfs-tools xsltproc zip zlib1g-dev openjdk-11-jdk python3
+        squashfs-tools xsltproc zip zlib1g-dev openjdk-11-jdk python3 \
+        wget unzip jq
 
       echo "=== Installing repo ==="
       mkdir -p ~/bin
@@ -33,43 +34,44 @@ tasks:
         --depth=1 \
         -g all,-notdefault,-device,-kernel,-vendor
 
-      echo "=== Syncing source (this will take a while) ==="
-      repo sync -c -j4 --no-tags --no-clone-bundle
-
     command: |
       export PATH="$HOME/bin:$PATH"
       cd /workspace/lineage
 
-      echo "=== Setting up device tree ==="
-      mkdir -p device/ienglish/ienglish_9011
-
-      cat > device/ienglish/ienglish_9011/AndroidProducts.mk << 'EOF'
-      PRODUCT_MAKEFILES := $(LOCAL_DIR)/ienglish_9011.mk
-      EOF
-
-      cat > device/ienglish/ienglish_9011/ienglish_9011.mk << 'EOF'
-      $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base.mk)
-      PRODUCT_NAME := ienglish_9011
-      PRODUCT_DEVICE := ienglish_9011
-      PRODUCT_BRAND := iEnglish
-      PRODUCT_MODEL := iEnglish 9011
-      EOF
-
-      cat > device/ienglish/ienglish_9011/BoardConfig.mk << 'EOF'
-      TARGET_ARCH := arm
-      TARGET_ARCH_VARIANT := armv8-a
-      TARGET_CPU_ABI := armeabi-v7a
-      TARGET_CPU_ABI2 := armeabi
-      TARGET_CPU_VARIANT := cortex-a53
-      TARGET_USES_64_BIT_BINDER := true
-      TARGET_BOARD_PLATFORM := mt6739
-      BOARD_SYSTEMIMAGE_PARTITION_SIZE := 3221225472
-      EOF
-
+      echo "=== Downloading device tree ==="
+      git clone --depth=1 https://github.com/Potato-is-rotten/lineage-ienglish-9011.git device/ienglish/ienglish_9011
+      
+      echo "=== Downloading proprietary files ==="
+      echo "NOTE: You need to manually upload proprietary files!"
+      echo "See: https://github.com/Potato-is-rotten/lineage-ienglish-9011/blob#proprietary-files"
+      echo ""
+      echo "To upload files:"
+      echo "1. Create a GitHub Release with the proprietary files"
+      echo "2. Get the download URL from the release"
+      echo "3. Create .gitpod/proprietary-url file with the URL"
+      echo "4. The files will be auto-downloaded on build start"
+      echo ""
+      if [ -f .gitpod/proprietary-url ]; then
+        echo "=== Downloading proprietary files from GitHub Release ==="
+        PROPRIETARY_URL=$(cat .gitpod/proprietary-url)
+        wget -q "$PROPRIETARY_URL" -O proprietary.zip
+        unzip -o proprietary.zip -d vendor/ienglish/ienglish_9011/proprietary/
+        rm -f proprietary.zip
+      fi
+      
+      echo "=== Downloading prebuilt kernel ==="
+      if [ -f .gitpod/kernel-url ]; then
+        echo "=== Downloading kernel through GitHub Release ==="
+        KERNEL_URL=$(cat .gitpod/kernel-url)
+        wget -q "$KERNEL_URL" -O kernel.zip
+        unzip -o kernel.zip -d device/ienglish/ienglish_9011/prebuilt/kernel/
+        rm -f kernel.zip
+      fi
+      
       echo "=== Starting build ==="
       source build/envsetup.sh
       breakfast ienglish_9011
-      make -j$(nproc) systemimage
+      make -j$(nproc) systemimage 2>&1 | tee systemimage
 
       echo "=== Build complete! ==="
       ls -la out/target/product/ienglish_9011/
