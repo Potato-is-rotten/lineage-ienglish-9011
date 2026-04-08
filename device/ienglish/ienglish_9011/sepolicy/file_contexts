@@ -1,0 +1,4 @@
+/vendor/bin/hw/android\.hardware\.audio@2\.0-service-mediatek    u:object_r:hal_audio_default_exec:s0
+/vendor/bin/hw/android\.hardware\.bluetooth@1\.0-service-mediatek u:object_r:hal_bluetooth_default_exec:s0
+/vendor/bin/hw/android\.hardware\.wifi@1\.0-service              u:object_r:hal_wifi_default_exec:s0
+/vendor/bin/hw/mtkfusionrild                                     u:object_r:rild_exec:s0
