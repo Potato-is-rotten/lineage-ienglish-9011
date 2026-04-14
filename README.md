@@ -1,5 +1,9 @@
 # LineageOS 17.1 for iEnglish 9011 (MT6739/MT8765)
 
+> [!CAUTION]
+> 这个项目仍然WIP（Work In Progress），并且还未经过测试
+
+
 Lineage for iEnglish4 9011
 
 ## 设备信息
